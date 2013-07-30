@@ -1,0 +1,133 @@
+!config
+authorized-table admin
+    description Default authority table with all authority enable
+    authorized read all 
+    authorized write all 
+!
+authorized-table audit
+    description Default authority table used for audit administrator
+!
+authorized-table useradmin
+    description Default authority table used for useradmin administrator
+    authorized read admin-user 
+    authorized write admin-user 
+!
+!
+user administrator admin local secret w3KVTV9GBX0Hccgt7/TLskZ4a7R9qj+5r3zEK+IJAcVQ6kAGXbQqZEZ+zOrzRrq authorized-table admin  
+user administrator admin authorized-address first 0.0.0.0/0
+user administrator admin description default super administrator
+user administrator audit local secret aZRp4Hgb0Qpt+WE6HmNMOYTtVwa6LxkRQRX0N6bhfIJrUFdwcDulMEp09owx/Ob authorized-table audit  
+user administrator audit description default audit administrator
+user administrator useradmin local secret kDQ0DMYYZvvC9fyj8Mq3lYKhdMPNVNoP1l2SE2Fes0Lp/FuC9Sv2wtWtiR8bTbJ authorized-table useradmin  
+user administrator useradmin description default user administrator
+user administrator admin portlet host container vc1 pscreate true psindex 0
+user administrator admin portlet sys_res container vc1 pscreate true psindex 1
+user administrator admin portlet license container vc1 pscreate true psindex 2
+user administrator admin portlet TopSession container vc1 pscreate false psindex 3
+user administrator admin portlet inf_flow container vc1 pscreate false psindex 4
+user administrator admin portlet inf_msg container vc2 pscreate true psindex 0
+user administrator admin portlet sys_connect container vc2 pscreate true psindex 1
+user administrator admin portlet warn container vc2 pscreate true psindex 2
+user administrator admin portlet TopAttack container vc2 pscreate false psindex 3
+user administrator admin portlet TopVirus container vc2 pscreate false psindex 4
+user administrator admin portlet business container vc2 pscreate false psindex 5
+!
+timezone 57
+!
+ips dfi on
+!
+vpn ca crl config period 30 url http://127.0.0.1/cacrl.crl
+!
+interface eth0
+ ip address 192.168.1.250/24
+ allow access https
+ allow access ping
+!
+interface ge0
+ description fw-audit
+ ip address 10.109.32.168/22
+ allow access http
+ allow access https
+ allow access telnet
+ allow access ssh
+ allow access ping
+!
+interface ge1
+!
+interface ge2
+!
+interface ge3
+!
+interface ge4
+!
+interface ge5
+!
+interface ge6
+!
+interface ge7
+!
+interface ge8
+!
+interface ge9
+!
+interface ge10
+!
+interface ge11
+!
+address venus
+ range-address 10.109.32.1 10.109.35.255
+ host-address 10.210.38.168
+address mars
+ net-address 192.168.1.0/24
+!
+service sunday
+ tcp dest 215 218 source 213 214
+!
+external-ctrl template Block_All 
+ description Predefined: Block all apps 
+external-ctrl template Monitor_All 
+ description Predefined: Monitor all apps 
+!
+sslvpn
+!
+policy 1 any any any any any always permit
+policy 2 any any venus mars ssh always deny
+ log policy
+!
+
+ha-group
+ auto_syn config-on rto-on ips-on av-on
+
+!
+!
+!
+!
+!
+protocol manage Telnetπ‹¿Ì
+ description telnetchaoshi
+ protocol tcp
+ port 23
+ timeout 10
+!
+tianxun-interaction
+!
+!end
+#IPS AV CONFIG FILE
+[IPS PREDEFINE CONFIG]
+
+[IPS CUSTOM CONFIG]
+[EXT-CTRL CUSTOM TEMPLATE LIST]
+[EXT-CTRL CUSTOM TEMPLATE LIST END]
+[WF KEYWORD CONFIG]
+[WF KEYWORD CONFIG END]
+
+[AV CONFIG]
+7
+mail_rep_str = 
+http_rep_str = 
+
+[AV SCAN LIST CONFIG]
+
+[AV BLOCK LIST CONFIG]
+[ANTI-SPAM CONFIG BEGIN]
+[ANTI-SPAM CONFIG END]
