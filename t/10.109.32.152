@@ -543,20 +543,30 @@ ID 8086 define host add name xxx ipaddr '127.0.0.4 '
 ID 8087 define host add name yyy ipaddr '127.0.0.4 '
 ID 8107 define host add name null1 ipaddr '10.109.33.177 '
 ID 8127 define host add name heheh
+ID 8145 define host add name Google ipaddr '8.8.8.8 '
+ID 8146 define host add name Goog1e ipaddr '8.8.8.8 '
+ID 8151 define host add name Dubai ipaddr '220.10.5.163 '
+ID 8168 define host add name def_test ipaddr '101.1.1.1 '
+ID 8182 define host add name test23 ipaddr '8.8.8.5 '
 ID 8122 define subnet add name lihan ipaddr 192.168.1.0 mask 255.255.255.0
 ID 8123 define subnet add name lihan2 ipaddr 192.168.1.0 mask 255.255.255.0
 ID 8124 define subnet add name huakai ipaddr 10.109.32.1 mask 255.255.252.0 except '10.109.32.152 10.109.32.166 10.109.35.213 '
+ID 8186 define subnet add name ac ipaddr 0.0.0.0 mask 0.0.0.0
 ID 8001 define range add name any ip1 0.0.0.0 ip2 255.255.255.255
 ID 8095 define range add name aoifdsf ip1 10.109.32.1 ip2 10.109.32.255 except '10.109.32.166 10.109.32.167 '
-ID 8110 define range add name any2 ip1 0.0.0.0 ip2 255.255.255.255
 ID 8116 define range add name liwei3 ip1 10.109.33.177 ip2 10.109.33.177
-ID 8128 define range add name hahaa ip1 1.1.1.1 ip2 255.255.252.252
 ID 8132 define range add name perldoc ip1 10.109.32.0 ip2 10.109.35.255
 ID 8133 define range add name permaon ip1 10.109.32.0 ip2 10.109.35.255
+ID 8147 define range add name Baidu ip1 220.10.5.9 ip2 220.10.5.246
+ID 8148 define range add name Bing ip1 220.10.5.9 ip2 220.10.5.246
+ID 8162 define range add name FLOAT ip1 20.20.20.15 ip2 20.20.20.20
+ID 8183 define range add name test234 ip1 8.8.8.2 ip2 8.8.8.9
 ID 8105 define group_address add name 123
 ID 8111 define group_address add name dutyjh member 'aoifdsf manage-1 '
 ID 8117 define group_address add name fguihvf member 'aoifdsf manage-1 '
 ID 8118 define group_address add name group_address3 member 'any liwei3 '
+ID 8169 define group_address add name ltest member 'def_test '
+ID 8184 define group_address add name test2345 member 'test23 test234 '
 ID 8089 define service add name XYQ protocol 6 port 21
 ID 8109 define service add name QYX protocol 6 port 23
 ID 8113 define service add name ICMP1 protocol 1 port 1521 port2 3389
@@ -565,10 +575,12 @@ ID 8119 define service add name jkl protocol 6 port 23
 ID 8120 define service add name hihihi protocol 17 port 23 port2 123
 ID 8129 define service add name kiki protocol 6 port 0
 ID 8130 define service add name fuyuy protocol 6 port 3389
+ID 8143 define service add name tes protocol 17 port 23 port2 123
 ID 8088 define group_service add name mygroup member 'LOOP X25 '
 ID 8106 define group_service add name 456
 ID 8115 define group_service add name error_group member 'ICMP1 ICMP2 '
 ID 8131 define group_service add name yours member 'LOOP X25 '
+ID 8144 define group_service add name newg member 'hihihi tes '
 ar dfi-params set dst_num_limits 128
 ar dfi-params set multithread_limits 4
 ar dfi-params set activity_limits 8
@@ -675,7 +687,6 @@ firewall enhancement switch accelerate off overlap-exam off
 ID 8081 firewall policy add action accept dst 'any ' group-name lewis
 ID 8079 firewall policy add action accept src 'aoifdsf ' group-name lewis
 ID 8108 firewall policy add action accept service '456 ' group-name lewis
-ID 8102 firewall policy add action accept group-name lewis
 ID 8134 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'liwei3 aoifdsf 123 ' dst 'lihan manage-1 lihan2 ' service 'TCP EGP ' group-name lewis
 ID 8137 firewall policy add action accept src 'aoifdsf liwei3 123 ' dst 'manage-1 ' service 'TCP EGP ' group-name lewis
 ID 8138 firewall policy add action accept src 'aoifdsf liwei3 123 ' dst 'manage-1 ' service 'TCP ' group-name lewis
@@ -688,13 +699,39 @@ ID 8093 firewall policy add action accept enable no
 ID 8096 firewall policy add action accept srcarea 'webui-area ' dst 'liwei ' service 'PING ICMP '
 ID 8121 firewall policy add action accept srcarea 'area_eth0 ' src 'any '
 ID 8125 firewall policy add action accept
+ID 8174 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Goog1e ' dst 'lihan manage-1 permaon ' service 'TCP Daytime(UDP) '
+ID 8171 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Goog1e ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
+ID 8172 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Dubai ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
 ID 8141 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'liwei3 aoifdsf 123 ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
 ID 8135 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'liwei3 aoifdsf 123 ' dst 'lihan manage-1 lihan2 ' service 'TCP EGP '
 ID 8136 firewall policy add action accept src 'liwei3 ' dst 'lihan lihan2 manage-1 ' service 'TCP EGP '
 ID 8142 firewall policy add action accept srcarea 'webui-area ' dstarea 'aaa ' src 'aoifdsf huakai dutyjh ' dst 'manage-1 lihan lihan2 ' service 'TCP PUP UDP '
 ID 8139 firewall policy add action accept srcarea 'webui-area ' dstarea 'aaa ' src 'aoifdsf huakai dutyjh ' dst 'manage-1 lihan lihan2 ' service 'TCP EGP '
 ID 8140 firewall policy add action accept src 'aoifdsf liwei3 123 ' dst 'manage-1 null1 heheh ' service 'TCP EGP '
-ID 8078 firewall policy add action collect src 'any '
+ID 8158 firewall policy add action accept src 'Google ' dst 'Baidu ' service 'HTTPS SNPP '
+ID 8150 firewall policy add action deny src 'Google ' dst 'Baidu ' service 'L2TP MSN '
+ID 8149 firewall policy add action accept src 'Google ' dst 'Dubai ' service 'IGMP '
+ID 8152 firewall policy add action accept src 'Baidu ' dst 'Goog1e ' service 'IGMP '
+ID 8153 firewall policy add action deny src 'Dubai ' dst 'Goog1e ' service 'EGP '
+ID 8154 firewall policy add action accept src 'manage-2 ' dst 'Bing ' service 'ICMP '
+ID 8159 firewall policy add action accept src 'manage-2 ' dst 'Dubai ' service 'EGP '
+ID 8155 firewall policy add action deny dst 'Dubai ' service 'EGP '
+ID 8156 firewall policy add action accept src 'Dubai ' dst 'perldoc ' service 'LOOP '
+ID 8078 firewall policy add action deny src 'Dubai ' dst 'permaon ' service 'mygroup '
+ID 8157 firewall policy add action accept src 'any ' dst 'perldoc ' service 'jkl hihihi kiki '
+ID 8160 firewall policy add action accept src 'Google ' dst 'perldoc ' service 'LOOP '
+ID 8175 firewall policy add action accept src 'lihan2 Goog1e ' dst 'FLOAT ' service 'X.400 '
+ID 8165 firewall policy add action deny src 'yyy lihan2 ' dst 'FLOAT ' service 'X.400 '
+ID 8166 firewall policy add action accept src 'FLOAT ' dst 'yyy ' service 'X.400 '
+ID 8167 firewall policy add action deny src 'yyy ' dst 'FLOAT ' service 'X.400 '
+ID 8163 firewall policy add action accept src 'yyy ' dst 'FLOAT ' service 'X.400 '
+ID 8177 firewall policy add action deny src 'ltest ' dst 'Goog1e Baidu ' service 'TCP ICMP '
+ID 8178 firewall policy add action deny src 'ltest ' dst 'Goog1e Bing ' service 'ICMP UDP '
+ID 8179 firewall policy add action deny src 'ltest ' dst 'Goog1e FLOAT ' service 'TCP ICMP '
+ID 8176 firewall policy add action accept src 'ltest ' dst 'Goog1e Bing ' service 'TCP ICMP '
+ID 8170 firewall policy add action accept src 'ltest ' dst 'Goog1e ' service 'TCP ICMP '
+ID 8185 firewall policy add action accept srcarea 'lewis1 ' dstarea 'webui-area '
+ID 8164 firewall policy add action collect
 log log set ipaddr '192.168.1.253 10.109.32.152' port UDP:514 logtype syslog trans enable trans_gather yes
 log log log_key set
 log log log_crypt disable
@@ -730,6 +767,8 @@ ID 8067 pf service add name ssh area webui-area addressname manage-1
 ID 8069 pf service add name ssh area webui-area addressname liwei
 ID 8076 pf service add name snmp area area_eth0 addressname any
 ID 8103 pf service add name telnet area area_eth0 addressname manage-1
+ID 8173 pf service add name telnet area area_eth0 addressname any
+ID 8180 pf service add name ping area area_eth0 addressname any
 pf idbprule log off
 pf idbprule drop-log off
 pf rule set default action accept log no
@@ -841,5 +880,5 @@ snmp set location www.topsec.com.cn
 snmp start
 avse update-stream reset
 avse update-stream host TOPSEC
-avse update-stream update-time 06:37
+avse update-stream update-time 06:35
 system config implement

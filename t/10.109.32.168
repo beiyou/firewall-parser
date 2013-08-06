@@ -12,6 +12,18 @@ authorized-table useradmin
     authorized read admin-user 
     authorized write admin-user 
 !
+authorized-table lix1
+    authorized read system-config 
+    authorized read securit-policy 
+    authorized read admin-user 
+    authorized read access-user 
+    authorized read reboot 
+    authorized write system-config 
+    authorized write securit-policy 
+    authorized write admin-user 
+    authorized write access-user 
+	authorized write reboot 
+!
 !
 user administrator admin local secret w3KVTV9GBX0Hccgt7/TLskZ4a7R9qj+5r3zEK+IJAcVQ6kAGXbQqZEZ+zOrzRrq authorized-table admin  
 user administrator admin authorized-address first 0.0.0.0/0
@@ -20,6 +32,8 @@ user administrator audit local secret aZRp4Hgb0Qpt+WE6HmNMOYTtVwa6LxkRQRX0N6bhfI
 user administrator audit description default audit administrator
 user administrator useradmin local secret kDQ0DMYYZvvC9fyj8Mq3lYKhdMPNVNoP1l2SE2Fes0Lp/FuC9Sv2wtWtiR8bTbJ authorized-table useradmin  
 user administrator useradmin description default user administrator
+user administrator test1 local secret gDkJNpn6HwcDvH05Rx0lSwGxq6ybif8ivM5oq/alOUHsvsc/xv3hNEgMQZB0eZi authorized-table lix1  
+user administrator test1 description pwd_123-abc
 user administrator admin portlet host container vc1 pscreate true psindex 0
 user administrator admin portlet sys_res container vc1 pscreate true psindex 1
 user administrator admin portlet license container vc1 pscreate true psindex 2
@@ -31,10 +45,23 @@ user administrator admin portlet warn container vc2 pscreate true psindex 2
 user administrator admin portlet TopAttack container vc2 pscreate false psindex 3
 user administrator admin portlet TopVirus container vc2 pscreate false psindex 4
 user administrator admin portlet business container vc2 pscreate false psindex 5
+user administrator test1 portlet host container vc1 pscreate true psindex 0
+user administrator test1 portlet sys_res container vc1 pscreate true psindex 1
+user administrator test1 portlet license container vc1 pscreate true psindex 2
+user administrator test1 portlet TopSession container vc1 pscreate false psindex 3
+user administrator test1 portlet inf_flow container vc1 pscreate false psindex 4
+user administrator test1 portlet inf_msg container vc2 pscreate true psindex 0
+user administrator test1 portlet sys_connect container vc2 pscreate true psindex 1
+user administrator test1 portlet warn container vc2 pscreate true psindex 2
+user administrator test1 portlet TopAttack container vc2 pscreate false psindex 3
+user administrator test1 portlet TopVirus container vc2 pscreate false psindex 4
+user administrator test1 portlet business container vc2 pscreate false psindex 5
 !
 timezone 57
-!
+!
 ips dfi on
+!
+guish timeout 120 
 !
 vpn ca crl config period 30 url http://127.0.0.1/cacrl.crl
 !
@@ -79,9 +106,80 @@ address venus
  host-address 10.210.38.168
 address mars
  net-address 192.168.1.0/24
+address net1
+ host-address 192.168.3.2
+ host-address 192.168.3.6
+ net-address 192.168.5.0/24
+ range-address 192.168.6.1 192.168.6.100
+address net2
+ host-address 192.168.20.1
+ host-address 192.168.20.3
+ host-address 192.168.20.5
+address net3
+ description include in net2
+ host-address 192.168.20.5
+address net4
+ description same with net3
+ host-address 192.168.20.5
+address net5
+ description ip_any
+ net-address 0.0.0.0/0
+address 2net
+ host-address 192.168.3.60
+address #net
+ host-address 192.168.3.60
+address .g
+ host-address 222.23.26.25
+address %net
+ host-address 192.168.3.60
+ range-address 192.168.4.2 192.168.4.5
+ host-address 192.168.3.61
+ range-address 192.168.4.6 192.168.4.8
+ host-address 192.168.3.62
+address !@#$%^&*())))_`
+ host-address 2.2.2.2
+address net6
+ host-address 192.168.3.60
+ range-address 192.168.3.50 192.168.3.70
+!
+address-group gnet1
+   address-object any
+   address-object net1
+address-group gnet2
+   address-object net1
+   address-object net3
+address-group gnet3
+ description net4 same with net3 in gnet2
+   address-object mars
+   address-object net4
+address-group gnet4
+   address-object mars
+   address-object gnet2
 !
 service sunday
  tcp dest 215 218 source 213 214
+service ser1
+ tcp dest 100 199 source 10
+service ser2
+ ip 100
+service ser3
+ icmp 122 121
+service ser4
+ udp dest 500 1000 source 220 1000
+service ser5
+ description same with 1
+ tcp dest 100 199 source 10
+service ser6
+ description src port redundant with 1
+ tcp dest 200 300 source 10 50
+!
+service-group gser1
+ service-object http
+ service-object ping
+ service-object ser1
+service-group gser2
+ service-object ssh
+ service-object ser5
 !
 external-ctrl template Block_All 
  description Predefined: Block all apps 
@@ -93,6 +191,15 @@ sslvpn
 policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
+policy 3 any any net1 mars any always permit
+policy 4 ge1 ge2 venus gnet1 tcp always permit
+ enable
+policy 5 ge1 ge2 net1 net2 any always permit
+ enable
+policy 6 ge1 ge2 net1 net3 any always deny
+ enable
+policy 7 ge1 ge2 net1 net3 any always permit
+ enable
 !
 
 ha-group
@@ -103,7 +210,7 @@ ha-group
 !
 !
 !
-protocol manage Telnetπ‹¿Ì
+protocol manage telnet
  description telnetchaoshi
  protocol tcp
  port 23
