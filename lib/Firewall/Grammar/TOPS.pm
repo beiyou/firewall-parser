@@ -1,4 +1,4 @@
-package Firewall::Parser;
+package Firewall::Grammar::TOPS;
 
 use strict;
 use warnings;
@@ -9,31 +9,30 @@ BEGIN {
     require Exporter;
 
     @ISA       = qw(Exporter);
-    @EXPORT    = qw(parser);
+    @EXPORT    = qw(grammar);
     @EXPORT_OK = qw();
-    $VERSION   = '2.0010';
+    $VERSION   = '3.0000';
 }
 
 use Smart::Comments;
-use Parse::RecDescent;
 
 =head1 NAME
 
-Firewall::Parser - Firewall Configuration Parser
+Firewall::Grammar::TOPS - Grammar of Topsec Firewall Configuration
 
 =head1 SYNOPSIS
 
-    use Firewall::Parser;
+    use Firewall::Grammar::TOPS;
 
 =head1 DESCRIPTION
 
 =head1 METHODS
 
-=head2 parser
+=head2 grammar
 
 =cut
 
-sub parser {
+sub grammar {
 
 }
 
@@ -44,9 +43,5 @@ __END__
 =head1 AUTHOR
 
 Written by Yanbin MA
-
-=head1 HISTORY
-
-This module is first written on May 24, 2013.
 
 =cut
