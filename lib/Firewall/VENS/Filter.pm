@@ -1,4 +1,4 @@
-package Firewall::Filter::TOPS;
+package Firewall::VENS::Filter;
 
 use strict;
 use warnings;
@@ -18,11 +18,11 @@ use Smart::Comments;
 
 =head1 NAME
 
-Firewall::Filter::TOPS - Filter of Topsec Firewall Configuration
+Firewall::VENS::Filter - Filter of Venus Firewall Configuration
 
 =head1 SYNOPSIS
 
-    use Firewall::Filter::TOPS;
+    use Firewall::VENS::Filter;
 
 =head1 DESCRIPTION
 
@@ -41,14 +41,39 @@ sub filter {
     # delete more than one whitespace
     $text =~ s/( )+/ /g;
 
+    # ignore the comments
+    $text =~ s/ description .*\n//g;
+
+    # merge subcommands into one line
+    $text =~ s/\n / /g;
+
     my @self = "\n";
 
-    while ($text =~ /(?<=\n)(ID \d+ define .*\n)/g) {
+    while ($text =~ /(?<=\n)(address .*\n)/g) {
         push @self, $1;
     }
+
     push @self, "\n";
 
-    while ($text =~ /(?<=\n)(ID \d+ firewall .*\n)/g) {
+    while ($text =~ /(?<=\n)(address-group .*\n)/g) {
+        push @self, $1;
+    }
+
+    push @self, "\n";
+
+    while ($text =~ /(?<=\n)(service .*\n)/g) {
+        push @self, $1;
+    }
+
+    push @self, "\n";
+
+    while ($text =~ /(?<=\n)(service-group .*\n)/g) {
+        push @self, $1;
+    }
+
+    push @self, "\n";
+
+    while ($text =~ /(?<=\n)(policy .*\n)/g) {
         push @self, $1;
     }
 

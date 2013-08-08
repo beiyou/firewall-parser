@@ -1,4 +1,4 @@
-package Firewall::Grammar::VENS;
+package Firewall::VENS::Grammar;
 
 use strict;
 use warnings;
@@ -19,11 +19,11 @@ use Parse::RecDescent;
 
 =head1 NAME
 
-Firewall::Grammar::VENS - Grammar of Venus Firewall Configuration
+Firewall::VENS::Grammar - Grammar of Venus Firewall Configuration
 
 =head1 SYNOPSIS
 
-    use Firewall::Grammar::VENS;
+    use Firewall::VENS::Grammar;
 
 =head1 DESCRIPTION
 

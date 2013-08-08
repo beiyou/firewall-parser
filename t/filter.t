@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Test::Simple tests => 5;
 
-use Firewall::Filter::VENS;
+use Firewall::VENS::Filter;
 
 my @lines = filter "t/10.109.32.168";
 
