@@ -15,7 +15,6 @@ BEGIN {
 }
 
 use Smart::Comments;
-use Parse::RecDescent;
 
 =head1 NAME
 
@@ -36,6 +35,18 @@ Firewall::Parser - Firewall Configuration Parser
 sub parser {
     my ($type, $file) = @_;
 
+    my @preprocessed_lines = filter $file;
+
+    my $parse_tree;
+
+    foreach my $line (@preprocessed_lines) {
+
+        # get the parse tree for current line
+        $parse_tree = $parser->startrule($line);
+
+        # turn the tokens into objects
+
+    }
 }
 
 1;

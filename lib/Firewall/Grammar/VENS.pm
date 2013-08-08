@@ -15,6 +15,7 @@ BEGIN {
 }
 
 use Smart::Comments;
+use Parse::RecDescent;
 
 =head1 NAME
 
