@@ -13,4 +13,12 @@
 1. precompile grammar module (this works)
 2. write objects to db
 
+### INSTALL
+
+    cpan install Parse::RecDescent
+    perl Makefile.PL
+    make
+    make test
+    make install
+
 ### BUGS

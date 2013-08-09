@@ -23,12 +23,19 @@ Firewall::Parser - Firewall Configuration Parser
 =head1 SYNOPSIS
 
     use Firewall::Parser;
+    my $container = parser "VENS", "firewall-config.txt";
 
 =head1 DESCRIPTION
 
-=head1 METHODS
+Firewall::Parser is a useful tool to parse the different firewall 
+configurations (Currently it support Venus and Topsec Firewalls).
 
-=head2 parser
+Using the Firewall::Parser model, Perl scripts can be written to 
+perform tasks such as firewall security audits, group or rule 
+optimizations or large scale firewall configuration changes.
+
+This software is inspired by Farly (Firewall Analysis and Rewrite 
+LibrarY).
 
 =cut
 
@@ -36,6 +43,8 @@ sub parser {
     my ($type, $file) = @_;
 
     my @preprocessed_lines = filter $file;
+
+    my $parser = Firewall::Venus::Grammar->new();
 
     my $parse_tree;
 
@@ -57,8 +66,9 @@ __END__
 
 Written by Yanbin MA
 
-=head1 HISTORY
+=head1 COPYRIGHT
 
-This module is first written on May 24, 2013.
+This program is free software. You may copy or redistribute it under 
+the same terms as Perl itself.
 
 =cut

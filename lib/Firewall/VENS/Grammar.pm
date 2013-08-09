@@ -27,15 +27,15 @@ Firewall::VENS::Grammar - Grammar of Venus Firewall Configuration
 
 =head1 DESCRIPTION
 
-=head1 METHODS
-
-=head2 grammar
-
 =cut
 
-sub grammar {
+sub new {
+    my $self = Parse::RecDescent->new($grammar);
 
 }
+
+my $grammar = q{
+};
 
 1;
 

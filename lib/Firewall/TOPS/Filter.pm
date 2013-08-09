@@ -23,12 +23,9 @@ Firewall::TOPS::Filter - Filter of Topsec Firewall Configuration
 =head1 SYNOPSIS
 
     use Firewall::TOPS::Filter;
+    my @preprocessed_lines = filter $file;
 
 =head1 DESCRIPTION
-
-=head1 METHODS
-
-=head2 filter
 
 =cut
 

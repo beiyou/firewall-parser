@@ -26,10 +26,6 @@ Firewall::Grammar::TOPS - Grammar of Topsec Firewall Configuration
 
 =head1 DESCRIPTION
 
-=head1 METHODS
-
-=head2 grammar
-
 =cut
 
 sub grammar {

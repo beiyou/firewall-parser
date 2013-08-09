@@ -23,12 +23,14 @@ Firewall::VENS::Filter - Filter of Venus Firewall Configuration
 =head1 SYNOPSIS
 
     use Firewall::VENS::Filter;
+    my @preprocessed_lines = filter $file;
 
 =head1 DESCRIPTION
 
-=head1 METHODS
-
-=head2 filter
+Firewall::VENS::Filter filters out unneeded configuration and pre-formats 
+the configuration in a manner as needed by the parser. It accepts the 
+configuration file, and store the pre formatted configuration, line by 
+line, into an array.
 
 =cut
 
