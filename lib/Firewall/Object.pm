@@ -1,4 +1,4 @@
-package Firewall::Parser;
+package Firewall::Object;
 
 use strict;
 use warnings;
@@ -9,27 +9,22 @@ BEGIN {
     require Exporter;
 
     @ISA       = qw(Exporter);
-    @EXPORT    = qw(parser);
+    @EXPORT    = qw();
     @EXPORT_OK = qw();
     $VERSION   = '2.0010';
 }
 
 use Smart::Comments;
-use Parse::RecDescent;
 
 =head1 NAME
 
-Firewall::Parser - Firewall Configuration Parser
+Firewall::Object - Object Table Service for Firewall::Parser
 
 =head1 SYNOPSIS
 
-    use Firewall::Parser;
+    use Firewall::Object;
 
 =head1 DESCRIPTION
-
-=head1 METHODS
-
-=head2 parser
 
 =cut
 
@@ -45,9 +40,5 @@ __END__
 =head1 AUTHOR
 
 Written by Yanbin MA
-
-=head1 HISTORY
-
-This module is first written on May 24, 2013.
 
 =cut

@@ -27,6 +27,11 @@ Firewall::TOPS::Filter - Filter of Topsec Firewall Configuration
 
 =head1 DESCRIPTION
 
+Firewall::TOPS::Filter filters out unneeded configuration and pre-formats 
+the configuration in a manner as needed by the parser. It accepts the 
+configuration file, and store the pre formatted configuration, line by 
+line, into an array.
+
 =cut
 
 sub filter {

@@ -12,13 +12,8 @@
 
 1. precompile grammar module (this works)
 2. write objects to db
+3. chinese support
 
 ### INSTALL
-
-    cpan install Parse::RecDescent
-    perl Makefile.PL
-    make
-    make test
-    make install
 
 ### BUGS
