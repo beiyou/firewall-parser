@@ -42,9 +42,15 @@ LibrarY).
 sub parser {
     my ($type, $file) = @_;
 
-    my @preprocessed_lines = filter $file;
+    use Firewall::VENS::Filter;
+    use Firewall::VENS::Grammar;
 
-    my $parser = Firewall::Venus::Grammar->new();
+### $type
+### $file
+
+    my @preprocessed_lines = filter($file);
+
+    my $parser = generator;
 
     my $parse_tree;
 
