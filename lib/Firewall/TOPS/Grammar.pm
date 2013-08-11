@@ -8,9 +8,9 @@ our (@ISA, @EXPORT, @EXPORT_OK, $VERSION);
 BEGIN {
     require Exporter;
 
-    @ISA       = qw(Exporter);
-    @EXPORT    = qw(generator);
-    @EXPORT_OK = qw();
+    @ISA       = qw (Exporter);
+    @EXPORT    = qw (generator);
+    @EXPORT_OK = qw ();
     $VERSION   = '3.0000';
 }
 

@@ -11,8 +11,8 @@
 ### FURTURE
 
 1. precompile grammar module (this works)
-2. write objects to db
-3. chinese support
+2. write objects to db (a save subroutine in Firewall::Object)
+3. **finished** chinese support
 
 ### INSTALL
 

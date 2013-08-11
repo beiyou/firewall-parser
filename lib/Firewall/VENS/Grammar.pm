@@ -8,9 +8,9 @@ our (@ISA, @EXPORT, @EXPORT_OK, $VERSION);
 BEGIN {
     require Exporter;
 
-    @ISA       = qw(Exporter);
-    @EXPORT    = qw(generator);
-    @EXPORT_OK = qw();
+    @ISA       = qw (Exporter);
+    @EXPORT    = qw (generator);
+    @EXPORT_OK = qw ();
     $VERSION   = '3.0000';
 }
 
@@ -32,15 +32,19 @@ Firewall::VENS::Grammar - Parser Generator of Venus
 
 my $grammar = q {
 
-startrule       :   address EOL
-                  | address_group EOL
+startrule       :   object_address EOL
+                  | object_service EOL
+                  | object_schedule EOL
+                  | groups_address EOL
+                  | groups_service EOL
+                  | policy EOL
 #                  | <error>
 
-address         :   "address" STRING object_address(s)
+object_address  :   "address" STRING address(s)
                   {
                       print "$item[2]\t: @{$item[3]}\n";
                   }
-object_address  :   "host-address" IPADDRESS
+address         :   "host-address" IPADDRESS
                   | "net-address" IPADDRESS "/" DIGIT
                   {
                       $return = $item[2]."/".$item[4];
@@ -49,12 +53,20 @@ object_address  :   "host-address" IPADDRESS
                   {
                       $return = $item[2]."~".$item[3];
                   }
-address_group   :   "address-group" STRING address_object(s)
+
+groups_address  :   "address-group" STRING address_object(s)
                   {
                       print "$item[2]\t: @{$item[3]}\n";
                   }
 
 address_object  :   "address-object" STRING
+
+groups_service  :   "service-group" STRING service(s)
+                  {
+                      print "$item[2]\t: @{$item[3]}\n";
+                  }
+
+service_object  :   "service-object" STRING
 
 #
 # token definitions
