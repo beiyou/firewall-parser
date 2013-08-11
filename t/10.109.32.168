@@ -136,7 +136,7 @@ address %net
  host-address 192.168.3.61
  range-address 192.168.4.6 192.168.4.8
  host-address 192.168.3.62
-address !@#$%^&*())))_`
+address カカシ
  host-address 2.2.2.2
 address net6
  host-address 192.168.3.60

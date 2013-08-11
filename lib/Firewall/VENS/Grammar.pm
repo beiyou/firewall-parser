@@ -32,19 +32,17 @@ Firewall::VENS::Grammar - Parser Generator of Venus
 
 my $grammar = q {
 
-startrule       :   object_address EOL
-                  | object_service EOL
-                  | object_schedule EOL
-                  | groups_address EOL
-                  | groups_service EOL
-                  | policy EOL
+startrule       :   address EOL
+#                  | service EOL
+                  | groups EOL
+#                  | policy EOL
 #                  | <error>
 
-object_address  :   "address" STRING address(s)
+address         :   "address" STRING address_object(s)
                   {
                       print "$item[2]\t: @{$item[3]}\n";
                   }
-address         :   "host-address" IPADDRESS
+address_object  :   "host-address" IPADDRESS
                   | "net-address" IPADDRESS "/" DIGIT
                   {
                       $return = $item[2]."/".$item[4];
@@ -54,19 +52,16 @@ address         :   "host-address" IPADDRESS
                       $return = $item[2]."~".$item[3];
                   }
 
-groups_address  :   "address-group" STRING address_object(s)
+groups          :   groups_type STRING groups_object(s)
                   {
                       print "$item[2]\t: @{$item[3]}\n";
                   }
 
-address_object  :   "address-object" STRING
+groups_type     :   "address-group"
+                  | "service-group"
 
-groups_service  :   "service-group" STRING service(s)
-                  {
-                      print "$item[2]\t: @{$item[3]}\n";
-                  }
-
-service_object  :   "service-object" STRING
+groups_object   :   "address-object" STRING
+                  | "service-object" STRING
 
 #
 # token definitions

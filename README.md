@@ -14,6 +14,16 @@
 2. write objects to db (a save subroutine in Firewall::Object)
 3. **finished** chinese support
 
-### INSTALL
+### LOG INFO
+
+    Begin parsing: VENS/10.109.32.168
+    Load package ... OK
+    ...
+    OBJECT/address venus: 10.109.32.166~10.109.32.255 192.168.1.101
+    GROUPS/service ...
+    POLICY....
+    ....
+    Compelte. Total 0.20 sec
 
 ### BUGS
+

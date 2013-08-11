@@ -5,9 +5,9 @@ use warnings;
 
 use Firewall::Parser;
 
-#parser "VENS", "t/10.109.32.168";
+parser "VENS", "t/10.109.32.168";
 
-use Firewall::Object;
-
-$object{name} = "Yanbin MA";
-print $object{name};
+#use Firewall::Object;
+#
+#$object{name} = "Yanbin MA";
+#print $object{name};
