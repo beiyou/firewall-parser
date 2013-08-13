@@ -32,7 +32,9 @@ Firewall::VENS::Grammar - Parser Generator of Venus
 
 my $grammar = q {
 
-startrule       :   address EOL
+startrule       :   instruction
+
+instruction     :   address EOL
 #                  | service EOL
                   | groups EOL
 #                  | policy EOL
@@ -67,11 +69,11 @@ groups_object   :   "address-object" STRING
 # token definitions
 #
 
-STRING      :   /\S+/
-DIGIT       :   /\d+/
-IPADDRESS   :   /(\d{1,3})((\.)(\d{1,3})){3}/
+STRING          :   /\S+/
+DIGIT           :   /\d+/
+IPADDRESS       :   /(\d{1,3})((\.)(\d{1,3})){3}/
 
-EOL         :   /$/
+EOL             :   /$/
 
 };
 

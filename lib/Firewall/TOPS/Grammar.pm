@@ -30,9 +30,23 @@ Firewall::TOPS::Grammar - Parser Generator of Topsec
 
 =cut
 
-my $grammar = <<GRAM;
+my $grammar = q {
 
-GRAM
+startrule       :   instruction
+
+instruction     :   
+
+#
+# token definitions
+#
+
+STRING          :   /\S+/
+DIGIT           :   /\d+/
+IPADDRESS   :   /(\d{1,3})((\.)(\d{1,3})){3}/
+
+EOL         :   /$/
+
+};
 
 sub generator {
     my $self = Parse::RecDescent->new($grammar);
