@@ -48,6 +48,7 @@ sub filter {
     while ($text =~ /(?<=\n)(ID \d+ define .*\n)/g) {
         push @self, $1;
     }
+
     push @self, "\n";
 
     while ($text =~ /(?<=\n)(ID \d+ firewall .*\n)/g) {

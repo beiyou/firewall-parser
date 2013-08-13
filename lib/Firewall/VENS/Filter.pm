@@ -43,7 +43,7 @@ sub filter {
     # delete more than one whitespace
     $text =~ s/( )+/ /g;
 
-    # ignore the comments
+    # ignore the description in instructions
     $text =~ s/ description .*\n//g;
 
     # merge subcommands into one line
