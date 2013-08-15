@@ -52,12 +52,14 @@ sub parser {
 
     my $parser = generator;
 
-    my $parse_tree;
+    my $tree;
 
     foreach my $line (@preprocessed_lines) {
 
         # get the parse tree for current line
-        $parse_tree = $parser->startrule($line);
+        $tree = $parser->startrule($line);
+
+### $tree
 
         # turn the tokens into objects
 
