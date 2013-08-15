@@ -25,5 +25,19 @@
     ....
     Compelte. Total 0.20 sec
 
-### BUGS
+### OBJECT SYMBOL
+
+    OBJECT : (TYPE,) STRING, VALUE
+
+    TYPE : ADDRESS | SERVICE | ADDRESS_GROUP | SERVICE_GROUP 
+           | SCHEDULE | INTERFACE
+
+    INSERT INTO (tablename) (fields) VALUES (values)
+
+    Save As Array Reference
+
+    POLICY : ACTION, SRC_IF, DST_IF, SRC_IP, DST_IP, SERVICE, SCHEDULE, 
+             STATUS
+
+    Save As Array Reference
 
