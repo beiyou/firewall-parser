@@ -581,6 +581,10 @@ ID 8106 define group_service add name 456
 ID 8115 define group_service add name error_group member 'ICMP1 ICMP2 '
 ID 8131 define group_service add name yours member 'LOOP X25 '
 ID 8144 define group_service add name newg member 'hihihi tes '
+ID 8189 define schedule add name hoilday cyctype weekcyc week 67 start 00:00 end 23:59
+ID 8190 define schedule add name wh cyctype yearcyc sdate 2010-01-01 stime 00:00:00 edate 2010-01-01 etime 23:59:59
+ID 8193 define schedule add name holiday cyctype yearcyc sdate 2001-01-01 stime 00:00:00 edate 2002-01-01 etime 23:59:59
+ID 8194 define schedule add name 111 cyctype weekcyc week 17 start 00:00 end 23:59
 ar dfi-params set dst_num_limits 128
 ar dfi-params set multithread_limits 4
 ar dfi-params set activity_limits 8
@@ -701,7 +705,7 @@ ID 8121 firewall policy add action accept srcarea 'area_eth0 ' src 'any '
 ID 8125 firewall policy add action accept
 ID 8174 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Goog1e ' dst 'lihan manage-1 permaon ' service 'TCP Daytime(UDP) '
 ID 8171 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Goog1e ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
-ID 8172 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Dubai ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
+ID 8172 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'aoifdsf 123 Dubai ' dst 'lihan manage-1 permaon ' service 'TCP EGP ' schedule 'hoilday holiday '
 ID 8141 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'liwei3 aoifdsf 123 ' dst 'lihan manage-1 permaon ' service 'TCP EGP '
 ID 8135 firewall policy add action accept srcarea 'area_eth0 ' dstarea 'webui-area ' src 'liwei3 aoifdsf 123 ' dst 'lihan manage-1 lihan2 ' service 'TCP EGP '
 ID 8136 firewall policy add action accept src 'liwei3 ' dst 'lihan lihan2 manage-1 ' service 'TCP EGP '
@@ -880,5 +884,5 @@ snmp set location www.topsec.com.cn
 snmp start
 avse update-stream reset
 avse update-stream host TOPSEC
-avse update-stream update-time 06:35
+avse update-stream update-time 05:08
 system config implement

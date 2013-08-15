@@ -1,35 +1,27 @@
 !config
-authorized-table admin
-    description Default authority table with all authority enable
-    authorized read all 
-    authorized write all 
-!
 authorized-table audit
     description Default authority table used for audit administrator
 !
+authorized-table admin
+    description Default authority table with all authority enable 
+    authorized read all 
+    authorized write all 
+!
 authorized-table useradmin
-    description Default authority table used for useradmin administrator
+    description Default authority table used for useradmin administrator 
     authorized read admin-user 
     authorized write admin-user 
 !
 authorized-table lix1
-    authorized read system-config 
-    authorized read securit-policy 
-    authorized read admin-user 
-    authorized read access-user 
-    authorized read reboot 
-    authorized write system-config 
-    authorized write securit-policy 
-    authorized write admin-user 
-    authorized write access-user 
-	authorized write reboot 
+    authorized read all 
+    authorized write all 
 !
 !
+user administrator audit local secret aZRp4Hgb0Qpt+WE6HmNMOYTtVwa6LxkRQRX0N6bhfIJrUFdwcDulMEp09owx/Ob authorized-table audit  
+user administrator audit description default audit administrator
 user administrator admin local secret w3KVTV9GBX0Hccgt7/TLskZ4a7R9qj+5r3zEK+IJAcVQ6kAGXbQqZEZ+zOrzRrq authorized-table admin  
 user administrator admin authorized-address first 0.0.0.0/0
 user administrator admin description default super administrator
-user administrator audit local secret aZRp4Hgb0Qpt+WE6HmNMOYTtVwa6LxkRQRX0N6bhfIJrUFdwcDulMEp09owx/Ob authorized-table audit  
-user administrator audit description default audit administrator
 user administrator useradmin local secret kDQ0DMYYZvvC9fyj8Mq3lYKhdMPNVNoP1l2SE2Fes0Lp/FuC9Sv2wtWtiR8bTbJ authorized-table useradmin  
 user administrator useradmin description default user administrator
 user administrator test1 local secret gDkJNpn6HwcDvH05Rx0lSwGxq6ybif8ivM5oq/alOUHsvsc/xv3hNEgMQZB0eZi authorized-table lix1  
@@ -58,7 +50,7 @@ user administrator test1 portlet TopVirus container vc2 pscreate false psindex 4
 user administrator test1 portlet business container vc2 pscreate false psindex 5
 !
 timezone 57
-!
+!
 ips dfi on
 !
 guish timeout 120 
@@ -136,11 +128,14 @@ address %net
  host-address 192.168.3.61
  range-address 192.168.4.6 192.168.4.8
  host-address 192.168.3.62
-address „Ç´„Ç´„Ç∑
+address !@#$%^&*())))_`
  host-address 2.2.2.2
 address net6
  host-address 192.168.3.60
  range-address 192.168.3.50 192.168.3.70
+address Å1Ñ2Å1É9Å1Ñ9Å1á4Å1Ñ6_Å1É9Å1Ü8Å1É7Å1á0Å1Ñ2Å1Ñ9Å1á0Å1Ñ2
+ description shi
+ host-address 10.109.32.151
 !
 address-group gnet1
    address-object any
@@ -155,6 +150,24 @@ address-group gnet3
 address-group gnet4
    address-object mars
    address-object gnet2
+address-group kk
+   address-object .g
+   address-object %net
+   address-object net5
+   address-object net4
+   address-object net3
+   address-object net2
+   address-object net1
+   address-object mars
+   address-object venus
+   address-object 2net
+   address-object #net
+   address-object !@#$%^&*())))_`
+   address-object any
+   address-object net6
+   address-object gnet2
+   address-object gnet3
+   address-object gnet1
 !
 service sunday
  tcp dest 215 218 source 213 214
@@ -167,11 +180,15 @@ service ser3
 service ser4
  udp dest 500 1000 source 220 1000
 service ser5
- description same with 1
+ description same with 1 
  tcp dest 100 199 source 10
 service ser6
- description src port redundant with 1
+ description src port redundant with 1 
  tcp dest 200 300 source 10 50
+service atom
+ tcp dest 1024 2048 source 1024 2048
+ udp dest 1024 2048 source 1024 2048
+ ip 23
 !
 service-group gser1
  service-object http
@@ -180,6 +197,17 @@ service-group gser1
 service-group gser2
  service-object ssh
  service-object ser5
+service-group universes
+ service-object atom
+ service-object ser5
+ service-object gser2
+ service-object gser1
+!
+schedule recurring day
+ periodic 09:00:00 18:00:00 monday tuesday wednesday thursday friday null null
+!
+schedule onetime summer
+ absolute 13-06-11 16:11:00 13-09-11 16:11:00
 !
 external-ctrl template Block_All 
  description Predefined: Block all apps 
@@ -192,6 +220,8 @@ policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
 policy 3 any any net1 mars any always permit
+policy 8 any any any Å1Ñ2Å1É9Å1Ñ9Å1á4Å1Ñ6_Å1É9Å1Ü8Å1É7Å1á0Å1Ñ2Å1Ñ9Å1á0Å1Ñ2 universes summer deny
+ description shit!!1
 policy 4 ge1 ge2 venus gnet1 tcp always permit
  enable
 policy 5 ge1 ge2 net1 net2 any always permit
