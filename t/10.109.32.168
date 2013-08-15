@@ -50,7 +50,7 @@ user administrator test1 portlet TopVirus container vc2 pscreate false psindex 4
 user administrator test1 portlet business container vc2 pscreate false psindex 5
 !
 timezone 57
-!
+!
 ips dfi on
 !
 guish timeout 120 
@@ -133,7 +133,7 @@ address !@#$%^&*())))_`
 address net6
  host-address 192.168.3.60
  range-address 192.168.3.50 192.168.3.70
-address 1„21ƒ91„91‡41„6_1ƒ91†81ƒ71‡01„21„91‡01„2
+address Âã‚«ã‚«ã‚·
  description shi
  host-address 10.109.32.151
 !
@@ -150,7 +150,7 @@ address-group gnet3
 address-group gnet4
    address-object mars
    address-object gnet2
-address-group kk
+address-group æ–°åŽç¤¾é¦™æ¸¯åˆ†ç¤¾
    address-object .g
    address-object %net
    address-object net5
@@ -162,7 +162,6 @@ address-group kk
    address-object venus
    address-object 2net
    address-object #net
-   address-object !@#$%^&*())))_`
    address-object any
    address-object net6
    address-object gnet2
@@ -220,7 +219,7 @@ policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
 policy 3 any any net1 mars any always permit
-policy 8 any any any 1„21ƒ91„91‡41„6_1ƒ91†81ƒ71‡01„21„91‡01„2 universes summer deny
+policy 8 any any any Âã‚«ã‚«ã‚· universes summer deny
  description shit!!1
 policy 4 ge1 ge2 venus gnet1 tcp always permit
  enable

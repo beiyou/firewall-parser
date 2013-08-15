@@ -36,13 +36,13 @@ startrule :
                 instruction
 
 instruction :
-                interface EOL
-            |   address EOL
-            |   service EOL
-#            |   schedule EOL
-            |   address_group EOL
-            |   service_group EOL
-#            |   policy EOL
+                interface
+            |   address
+            |   service
+#            |   schedule
+            |   address_group
+            |   service_group
+            |   policy
 #            |   <error>
 
 
@@ -51,6 +51,7 @@ interface :
 
 address :
                 "address" STRING address_object(s)
+                { $return = [$item[0], $item[2], @{$item[3]}] }
 
 address_object :
                 "host-address" IPADDRESS
@@ -61,23 +62,46 @@ address_object :
 
 service :
                 "service" STRING service_object(s)
+                { $return = [$item[0], $item[2], @{$item[3]}] }
 
 service_object :
-                /tcp|udp/ "dest" DIGIT DIGIT "source" DIGIT DIGIT
-                { $return = $item[1]."/".$item[3]."-".$item[4] }
+                /tcp|udp/ so_dst_port so_src_port
+                { $return = $item[1]."/".$item[2].":".$item[3] }
             |   "ip" DIGIT
                 { $return = $item[1]."/".$item[2] }
             |   "icmp" DIGIT DIGIT
                 { $return = $item[1]."/".$item[2].":".$item[3] }
 
+so_dst_port :
+                "dest" DIGIT DIGIT
+                { $return = $item[2]."-".$item[3] }
+
+so_src_port :
+                "source" DIGIT DIGIT
+                { $return = $item[2]."-".$item[3] }
+
 address_group :
                 "address-group" STRING groups_object(s)
+                { $return = [$item[0], $item[2], @{$item[3]}] }
 
 service_group :
                 "service-group" STRING groups_object(s)
+                { $return = [$item[0], $item[2], @{$item[3]}] }
 
 groups_object :
                 /(address|service)-object/ STRING
+
+policy :
+                "policy" STRING po_options
+                { $return = [$item[0], $item[2], @{$item[3]}] }
+
+po_options :
+                STRING STRING STRING STRING STRING STRING po_action
+                { $return = [@item] }
+
+po_action :
+                "permit"
+            |   "deny"
 
 #
 # token definitions
@@ -86,8 +110,6 @@ groups_object :
 STRING      :   /\S+/
 DIGIT       :   /\d+/
 IPADDRESS   :   /(\d{1,3})((\.)(\d{1,3})){3}/
-
-EOL         :   /$/
 
 };
 

@@ -613,26 +613,26 @@ ar interface_quota set name eth34 value 0
 ar interface_quota set name eth35 value 0
 ar interface_quota set name eth36 value 0
 ar interface_quota set name eth37 value 0
-ar group_quota set_flow name 传统协议 flow 0
-ar group_quota set_session name 传统协议 session 0
-ar group_quota set_flow name 股票交易 flow 0
-ar group_quota set_session name 股票交易 session 0
-ar group_quota set_flow name 即时通讯 flow 0
-ar group_quota set_session name 即时通讯 session 0
-ar group_quota set_flow name 流媒体 flow 0
-ar group_quota set_session name 流媒体 session 0
-ar group_quota set_flow name 网络游戏 flow 0
-ar group_quota set_session name 网络游戏 session 0
-ar group_quota set_flow name 网络电话 flow 0
-ar group_quota set_session name 网络电话 session 0
-ar group_quota set_flow name 网络电视 flow 0
-ar group_quota set_session name 网络电视 session 0
-ar group_quota set_flow name P2P下载 flow 0
-ar group_quota set_session name P2P下载 session 0
-ar group_quota set_flow name 其他流量 flow 0
-ar group_quota set_session name 其他流量 session 0
-ar group_quota set_flow name 自定义协议 flow 0
-ar group_quota set_session name 自定义协议 session 0
+ar group_quota set_flow name 麓芦脥鲁脨颅脪茅 flow 0
+ar group_quota set_session name 麓芦脥鲁脨颅脪茅 session 0
+ar group_quota set_flow name 鹿脡脝卤陆禄脪脳 flow 0
+ar group_quota set_session name 鹿脡脝卤陆禄脪脳 session 0
+ar group_quota set_flow name 录麓脢卤脥篓脩露 flow 0
+ar group_quota set_session name 录麓脢卤脥篓脩露 session 0
+ar group_quota set_flow name 脕梅脙陆脤氓 flow 0
+ar group_quota set_session name 脕梅脙陆脤氓 session 0
+ar group_quota set_flow name 脥酶脗莽脫脦脧路 flow 0
+ar group_quota set_session name 脥酶脗莽脫脦脧路 session 0
+ar group_quota set_flow name 脥酶脗莽碌莽禄掳 flow 0
+ar group_quota set_session name 脥酶脗莽碌莽禄掳 session 0
+ar group_quota set_flow name 脥酶脗莽碌莽脢脫 flow 0
+ar group_quota set_session name 脥酶脗莽碌莽脢脫 session 0
+ar group_quota set_flow name P2P脧脗脭脴 flow 0
+ar group_quota set_session name P2P脧脗脭脴 session 0
+ar group_quota set_flow name 脝盲脣没脕梅脕驴 flow 0
+ar group_quota set_session name 脝盲脣没脕梅脕驴 session 0
+ar group_quota set_flow name 脳脭露篓脪氓脨颅脪茅 flow 0
+ar group_quota set_session name 脳脭露篓脪氓脨颅脪茅 session 0
 ar tcp-quota set 0
 ar udp-quota set 0
 ar other-quota set 0
@@ -667,8 +667,8 @@ dpi global url-lib-update set host
 dpi global webfilter-update set time 0:0
 dpi global webfilter-update set host
 dpi global tcp-splice enable on
-dpi global mail-warning subject '此邮件违反了安全策略'
-dpi global mail-warning body '网关提示:\r\n********************************\r\n\r\n此邮件违反了安全策略，被过滤\r\n\r\n********************************\r\n\r\n'
+dpi global mail-warning subject '麓脣脫脢录镁脦楼路麓脕脣掳虏脠芦虏脽脗脭'
+dpi global mail-warning body '脥酶鹿脴脤谩脢戮:\r\n********************************\r\n\r\n麓脣脫脢录镁脦楼路麓脕脣掳虏脠芦虏脽脗脭拢卢卤禄鹿媒脗脣\r\n\r\n********************************\r\n\r\n'
 dpi global load-balance http least-connection
 dpi global load-balance ftp least-connection
 dpi global load-balance smtp least-connection
@@ -797,16 +797,16 @@ vpn vrc clean
 vpn vrc config set auth_mode local check_time 30 expired_time 120 timeout 60 dhcp-pool - dhcp-if - dns1 0.0.0.0 dns2 0.0.0.0 wins1 0.0.0.0 wins2 0.0.0.0 max_authnum 20 vip_control off fw-control off version-control off version standard force_auth off pwd_len 5 try_count 3 valid_time 180
 vpn vrc cert_access set acc off control off cn on mail off
 vpn kmod flush
-vpn kmod add serial 1 arithid 3 arithname 3DES description '3DES_CBC算法' modname ipsec_3des devname none
-vpn kmod add serial 2 arithid 12 arithname AES description 'AES算法' modname ipsec_aes devname none
-vpn kmod add serial 3 arithid 2 arithname DES description 'DES_CBC算法' modname ipsec_1des devname none
-vpn kmod add serial 4 arithid 11 arithname NULL description 'NULL算法' modname ipsec_null devname none
-vpn kmod add serial 5 arithid 51 arithname OCS description 'OCS算法' modname ipsec_ocs devname none
-vpn kmod add serial 7 arithid 57 arithname 3DES/AES description 'VPN加速卡800型' modname pkp_drv1010 devname pkp_dev
-vpn kmod add serial 8 arithid 58 arithname 3DES/AES description 'VPN加速卡500/200型' modname pkp_drv1005 devname pkp_dev
-vpn kmod add serial 16 arithid 61 arithname SCB description '天融信SCB2-B100/1000M加密卡' modname ipsec_topb devname none
-vpn kmod add serial 17 arithid 61 arithname SCB description '天融信SCB2-C加密卡' modname ipsec_topc devname none
-vpn kmod add serial 21 arithid 62 arithname SMSFOUR description '国密办SMS4算法' modname ipsec_sms4 devname none
+vpn kmod add serial 1 arithid 3 arithname 3DES description '3DES_CBC脣茫路篓' modname ipsec_3des devname none
+vpn kmod add serial 2 arithid 12 arithname AES description 'AES脣茫路篓' modname ipsec_aes devname none
+vpn kmod add serial 3 arithid 2 arithname DES description 'DES_CBC脣茫路篓' modname ipsec_1des devname none
+vpn kmod add serial 4 arithid 11 arithname NULL description 'NULL脣茫路篓' modname ipsec_null devname none
+vpn kmod add serial 5 arithid 51 arithname OCS description 'OCS脣茫路篓' modname ipsec_ocs devname none
+vpn kmod add serial 7 arithid 57 arithname 3DES/AES description 'VPN录脫脣脵驴篓800脨脥' modname pkp_drv1010 devname pkp_dev
+vpn kmod add serial 8 arithid 58 arithname 3DES/AES description 'VPN录脫脣脵驴篓500/200脨脥' modname pkp_drv1005 devname pkp_dev
+vpn kmod add serial 16 arithid 61 arithname SCB description '脤矛脠脷脨脜SCB2-B100/1000M录脫脙脺驴篓' modname ipsec_topb devname none
+vpn kmod add serial 17 arithid 61 arithname SCB description '脤矛脠脷脨脜SCB2-C录脫脙脺驴篓' modname ipsec_topc devname none
+vpn kmod add serial 21 arithid 62 arithname SMSFOUR description '鹿煤脙脺掳矛SMS4脣茫路篓' modname ipsec_sms4 devname none
 vpn kmod reset
 vpn kmod load serial 1 saved yes
 vpn kmod load serial 2 saved yes
