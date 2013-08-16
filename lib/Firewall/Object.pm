@@ -9,7 +9,7 @@ BEGIN {
     require Exporter;
 
     @ISA       = qw (Exporter);
-    @EXPORT    = qw (%OBJECT %GROUPS %POLICY);
+    @EXPORT    = qw (save);
     @EXPORT_OK = qw ();
     $VERSION   = '2.0010';
 }
@@ -18,20 +18,37 @@ use Smart::Comments;
 
 =head1 NAME
 
-Firewall::Object - Object Symbol Table for Firewall::Parser
+Firewall::Object - Firewall::Parser Object Save Module
 
 =head1 SYNOPSIS
 
     use Firewall::Object;
+    save \@object;
 
 =head1 DESCRIPTION
 
 =cut
 
-my (%OBJECT %GROUPS %POLICY);
+sub insert {
+    my ($table, $data) = @_;
+
+    my $sql = "insert into `$table` ";
+
+    my $fields = join ", ", (sort keys   %$data);
+    my $values = join ", ", (sort values %$data);
+
+    $sql .= join " ", "(", $fields, ") ";
+    $sql .= join " ", "values ", "(", $values, ")";
+
+    print "$sql\n";
+
+#    my $sth = $Firewall::Parser::dbh->prepare();
+#    $sth->execute() or die;
+#
+#    $sth->finish();
+}
 
 sub save {
-
 }
 
 1;

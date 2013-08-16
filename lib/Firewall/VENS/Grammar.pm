@@ -43,7 +43,7 @@ instruction :
             |   address_group
             |   service_group
             |   policy
-#            |   <error>
+            |   <error>
 
 
 interface :
@@ -51,7 +51,7 @@ interface :
 
 address :
                 "address" STRING address_object(s)
-                { $return = [$item[0], $item[2], @{$item[3]}] }
+                { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 address_object :
                 "host-address" IPADDRESS
@@ -62,7 +62,7 @@ address_object :
 
 service :
                 "service" STRING service_object(s)
-                { $return = [$item[0], $item[2], @{$item[3]}] }
+                { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 service_object :
                 /tcp|udp/ so_dst_port so_src_port
@@ -82,22 +82,22 @@ so_src_port :
 
 address_group :
                 "address-group" STRING groups_object(s)
-                { $return = [$item[0], $item[2], @{$item[3]}] }
+                { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 service_group :
                 "service-group" STRING groups_object(s)
-                { $return = [$item[0], $item[2], @{$item[3]}] }
+                { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 groups_object :
                 /(address|service)-object/ STRING
 
 policy :
-                "policy" STRING po_options
-                { $return = [$item[0], $item[2], @{$item[3]}] }
+                "policy" STRING options
+                { $return = [$item[0], @{$item[3]}] }
 
-po_options :
+options :
                 STRING STRING STRING STRING STRING STRING po_action
-                { $return = [@item] }
+                { shift @item; $return = [@item] }
 
 po_action :
                 "permit"
