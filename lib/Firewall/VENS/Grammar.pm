@@ -43,7 +43,7 @@ instruction :
             |   address_group
             |   service_group
             |   policy
-            |   <error>
+#            |   <error>
 
 
 interface :

@@ -27,6 +27,16 @@ Firewall::Object - Firewall::Parser Object Save Module
 
 =head1 DESCRIPTION
 
+There defines two kinds of Objects, the POLICY Objects and others. The 
+definitions is follows:
+
+    POLICY:
+        ACTION DST_IF SRC_IF DST_IP SRC_IP SERVICE SCHEDULE STATUS
+
+    ADDRESS | ADDRESS_GROUP | SERVICE | SERVICE_GROUP | SCHEDULE | 
+    INTERFACE :
+        STRING VALUE
+
 =cut
 
 sub insert {
@@ -34,21 +44,37 @@ sub insert {
 
     my $sql = "insert into `$table` ";
 
-    my $fields = join ", ", (sort keys   %$data);
-    my $values = join ", ", (sort values %$data);
+    my $insert_fields = join ", ", map { "`$_`" } keys   %$data;
+    my $insert_values = join ", ", map { "'$_'" } values %$data;
 
-    $sql .= join " ", "(", $fields, ") ";
-    $sql .= join " ", "values ", "(", $values, ")";
+    $sql .= join " ", "(", $insert_fields, ") ";
+    $sql .= join " ", "values ", "(", $insert_values, ")";
 
-    print "$sql\n";
+    my $sth = $Firewall::Parser::dbh->prepare($sql);
+    $sth->execute() or die;
 
-#    my $sth = $Firewall::Parser::dbh->prepare();
-#    $sth->execute() or die;
-#
-#    $sth->finish();
+    $sth->finish();
 }
 
 sub save {
+    # save a object to database
+    my $tree = shift;
+
+    my @object = @$tree;
+
+    my $table = shift @object;
+    my %data;
+
+    if ($table ~~ /policy/) {
+    }
+    else {
+        %data = (
+                string => shift @object,
+                value  => shift @object,
+        );
+    }
+
+    insert "fp-$table", \%data;
 }
 
 1;

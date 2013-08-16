@@ -50,23 +50,22 @@ sub parser {
     my $parser = generator;
 
     use DBI;
-    my ($host, $user, $pass, $db) = qw (10.109.32.166 root 123456 fw_audit);
-    my $dbh = DBI->connect("dbi:mysql:database=$db;host=$host", $user, $pass);
+    my ($host, $user, $pass, $db) = qw /10.109.32.166 root 123456 fw_audit/;
+
+    # set a global database handle
+    our $dbh = DBI->connect("dbi:mysql:database=$db;host=$host", $user, $pass);
     $dbh->do("set names utf8");
 
-    our $dbd = "HAH";
     use Firewall::Object;
-    my $object;
+    my $tree;
 
     foreach my $line (@preprocessed_lines) {
 
-        # get the parse object for current line
-        $object = $parser->startrule($line);
+        # get the parse tree for current line
+        $tree = $parser->startrule($line);
 
-### $object
-
-        # save the object tokens into database
-#        save $object if defined $object;
+        # save the object into database
+        save $tree if defined $tree;
 
     }
 }

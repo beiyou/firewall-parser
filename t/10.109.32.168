@@ -133,7 +133,7 @@ address !@#$%^&*())))_`
 address net6
  host-address 192.168.3.60
  range-address 192.168.3.50 192.168.3.70
-address カカシ
+address カカシ
  description shi
  host-address 10.109.32.151
 !
@@ -219,7 +219,7 @@ policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
 policy 3 any any net1 mars any always permit
-policy 8 any any any カカシ universes summer deny
+policy 8 any any any カカシ universes summer deny
  description shit!!1
 policy 4 ge1 ge2 venus gnet1 tcp always permit
  enable
