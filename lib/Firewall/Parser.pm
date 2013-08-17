@@ -45,9 +45,9 @@ sub parser {
     use Firewall::VENS::Filter;
     use Firewall::VENS::Grammar;
 
-    my @preprocessed_lines = filter $file;
+    use Firewall::Object;
 
-    my $parser = generator;
+    # TODO: add log recording features
 
     use DBI;
     my ($host, $user, $pass, $db) = qw /10.109.32.166 root 123456 fw_audit/;
@@ -56,7 +56,12 @@ sub parser {
     our $dbh = DBI->connect("dbi:mysql:database=$db;host=$host", $user, $pass);
     $dbh->do("set names utf8");
 
-    use Firewall::Object;
+    # front ends: process configuration texts by its filter
+    my @preprocessed_lines = filter $file;
+
+    # front ends: load grammar generator
+    my $parser = generator;
+
     my $tree;
 
     foreach my $line (@preprocessed_lines) {

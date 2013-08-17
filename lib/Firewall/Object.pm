@@ -27,15 +27,17 @@ Firewall::Object - Firewall::Parser Object Save Module
 
 =head1 DESCRIPTION
 
-There defines two kinds of Objects, the POLICY Objects and others. The 
-definitions is follows:
+There defines two kinds of Objects, the POLICY Objects and others. 
+The definitions is follows:
 
     POLICY:
-        ACTION DST_IF SRC_IF DST_IP SRC_IP SERVICE SCHEDULE STATUS
+        SRC_IF DST_IF SRC_IP DST_IP SERVICE SCHEDULE STATUS ACTION
 
     ADDRESS | ADDRESS_GROUP | SERVICE | SERVICE_GROUP | SCHEDULE | 
     INTERFACE :
         STRING VALUE
+
+OK! Let's save them to database.
 
 =cut
 
@@ -56,6 +58,9 @@ sub insert {
     $sth->finish();
 }
 
+sub update {
+}
+
 sub save {
     # save a object to database
     my $tree = shift;
@@ -66,11 +71,20 @@ sub save {
     my %data;
 
     if ($table ~~ /policy/) {
+        %data = (
+                SRC_IF   => shift @object,
+                DST_IF   => shift @object,
+                SRC_IP   => shift @object,
+                DST_IP   => shift @object,
+                SERVICE  => shift @object,
+                SCHEDULE => shift @object,
+                ACTION   => shift @object,
+        );
     }
     else {
         %data = (
-                string => shift @object,
-                value  => shift @object,
+                STRING => shift @object,
+                VALUE  => shift @object,
         );
     }
 
