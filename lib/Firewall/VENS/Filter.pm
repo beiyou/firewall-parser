@@ -51,6 +51,12 @@ sub filter {
 
     my @self = "\n";
 
+    while ($text =~ /(?<=\n)(interface .*\n)/g) {
+        push @self, $1;
+    }
+
+    push @self, "\n";
+
     while ($text =~ /(?<=\n)(address .*\n)/g) {
         push @self, $1;
     }

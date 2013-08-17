@@ -42,12 +42,13 @@ instruction :
 #            |   schedule
             |   address_group
             |   service_group
-            |   policy
+#            |   policy
 #            |   <error>
 
 
 interface :
-                "interface" STRING
+                "interface" STRING "ip address" IPADDRESS "/" DIGIT
+                { $return = [$item[0], $item[2], $item[4]."/".$item[6]] }
 
 address :
                 "address" STRING address_object(s)
