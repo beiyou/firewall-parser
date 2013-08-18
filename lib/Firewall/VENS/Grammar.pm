@@ -42,7 +42,7 @@ instruction :
 #            |   schedule
             |   address_group
             |   service_group
-#            |   policy
+            |   policy
 #            |   <error>
 
 
@@ -59,7 +59,7 @@ address_object :
             |   "net-address" IPADDRESS "/" DIGIT
                 { $return = $item[2]."/".$item[4] }
             |   "range-address" IPADDRESS IPADDRESS
-                { $return = $item[2]."~".$item[3] }
+                { $return = $item[2]."-".$item[3] }
 
 service :
                 "service" STRING service_object(s)

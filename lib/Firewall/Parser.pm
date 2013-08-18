@@ -28,7 +28,7 @@ Firewall::Parser - Firewall Configuration Parser
 =head1 DESCRIPTION
 
 Firewall::Parser is a useful tool to parse the different firewall 
-configurations (Currently it support Venus and Topsec Firewalls).
+configurations (Currently it supports Venus and Topsec Firewalls).
 
 Using the Firewall::Parser model, Perl scripts can be written to 
 perform tasks such as firewall security audits, group or rule 
@@ -85,7 +85,9 @@ Written by Yanbin MA
 
 =head1 COPYRIGHT
 
-This program is free software. You may copy or redistribute it under 
-the same terms as Perl itself.
+Copyright (c) 2013 Yanbin MA
+
+This program is FREE SOFTWARE. You may copy or redistribute it under 
+The MIT License.
 
 =cut
