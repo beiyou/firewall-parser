@@ -33,84 +33,84 @@ Firewall::VENS::Grammar - Parser Generator of Venus
 my $grammar = q {
 
 startrule :
-                instruction
+            instruction
 
 instruction :
-                interface
-            |   address
-            |   service
-#            |   schedule
-            |   address_group
-            |   service_group
-            |   policy
-#            |   <error>
+            interface
+        |   address
+        |   service
+        |   schedule
+        |   address_group
+        |   service_group
+        |   policy
+        |   <error>
 
 
 interface :
-                "interface" STRING "ip address" IPADDRESS "/" DIGIT
-                { $return = [$item[0], $item[2], $item[4]."/".$item[6]] }
+            "interface" STRING "ip address" IPADDR "/" DIGIT
+            { $return = [$item[0], $item[2], $item[4]."/".$item[6]] }
 
 address :
-                "address" STRING address_object(s)
-                { $return = [$item[0], $item[2], "@{$item[3]}"] }
+            "address" STRING address_object(s)
+            { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 address_object :
-                "host-address" IPADDRESS
-            |   "net-address" IPADDRESS "/" DIGIT
-                { $return = $item[2]."/".$item[4] }
-            |   "range-address" IPADDRESS IPADDRESS
-                { $return = $item[2]."-".$item[3] }
+            "host-address" IPADDR
+        |   "net-address" IPADDR "/" DIGIT
+            { $return = $item[2]."/".$item[4] }
+        |   "range-address" IPADDR IPADDR
+            { $return = $item[2]."-".$item[3] }
 
 service :
-                "service" STRING service_object(s)
-                { $return = [$item[0], $item[2], "@{$item[3]}"] }
+            "service" STRING service_object(s)
+            { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 service_object :
-                /tcp|udp/ so_dst_port so_src_port
-                { $return = $item[1]."/".$item[2].":".$item[3] }
-            |   "ip" DIGIT
-                { $return = $item[1]."/".$item[2] }
-            |   "icmp" DIGIT DIGIT
-                { $return = $item[1]."/".$item[2].":".$item[3] }
+            /tcp|udp/ so_dst_port so_src_port
+            { $return = $item[1]."/".$item[2].":".$item[3] }
+        |   "ip" DIGIT
+            { $return = $item[1]."/".$item[2] }
+        |   "icmp" DIGIT DIGIT
+            { $return = $item[1]."/".$item[2].":".$item[3] }
 
 so_dst_port :
-                "dest" DIGIT DIGIT
-                { $return = $item[2]."-".$item[3] }
+            "dest" DIGIT DIGIT
+            { $return = $item[2]."-".$item[3] }
 
 so_src_port :
-                "source" DIGIT DIGIT
-                { $return = $item[2]."-".$item[3] }
+            "source" DIGIT DIGIT
+            { $return = $item[2]."-".$item[3] }
 
 address_group :
-                "address-group" STRING groups_object(s)
-                { $return = [$item[0], $item[2], "@{$item[3]}"] }
+            "address-group" STRING groups_object(s)
+            { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 service_group :
-                "service-group" STRING groups_object(s)
-                { $return = [$item[0], $item[2], "@{$item[3]}"] }
+            "service-group" STRING groups_object(s)
+            { $return = [$item[0], $item[2], "@{$item[3]}"] }
 
 groups_object :
-                /(address|service)-object/ STRING
+            /(address|service)-object/ STRING
 
 policy :
-                "policy" STRING options
-                { $return = [$item[0], @{$item[3]}] }
+            "policy" STRING options
+            { $return = [$item[0], @{$item[3]}] }
 
 options :
-                STRING STRING STRING STRING STRING STRING po_action
-                { shift @item; $return = [@item] }
+            STRING STRING STRING STRING STRING STRING po_action
+            { shift @item; $return = [@item] }
 
 po_action :
-                "permit"
-            |   "deny"
+            "permit"
+        |   "deny"
 
 #
 # token definitions
 #
 
-STRING      :   /\S+/
-DIGIT       :   /\d+/
-IPADDRESS   :   /(\d{1,3})((\.)(\d{1,3})){3}/
+STRING  :   /\S+/
+DIGIT   :   /\d+/
+IPADDR  :   /(\d{1,3})((\.)(\d{1,3})){3}/
 
 };
 

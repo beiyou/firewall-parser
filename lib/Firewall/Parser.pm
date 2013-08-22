@@ -11,7 +11,7 @@ BEGIN {
     @ISA       = qw (Exporter);
     @EXPORT    = qw (parser);
     @EXPORT_OK = qw ();
-    $VERSION   = '2.0010';
+    $VERSION   = '2.0300';
 }
 
 use Smart::Comments;
@@ -42,8 +42,8 @@ LibrarY).
 sub parser {
     my ($type, $file) = @_;
 
-    use Firewall::VENS::Filter;
-    use Firewall::VENS::Grammar;
+    use Firewall::TOPS::Filter;
+    use Firewall::TOPS::Grammar;
 
     use Firewall::Object;
 
@@ -62,15 +62,17 @@ sub parser {
     # front ends: load grammar generator
     my $parser = generator;
 
-    my $tree;
+    my $yield;
 
     foreach my $line (@preprocessed_lines) {
 
         # get the parse tree for current line
-        $tree = $parser->startrule($line);
+        $yield = $parser->startrule($line);
+
+### $yield
 
         # save the object into database
-        save $tree if defined $tree;
+        save $yield if defined $yield;
 
     }
 }
@@ -87,7 +89,7 @@ Written by Yanbin MA
 
 Copyright (c) 2013 Yanbin MA
 
-This program is FREE SOFTWARE. You may copy or redistribute it under 
-The MIT License.
+This program is free softsare. You may copy or redistribute it under 
+the terms of The MIT License.
 
 =cut

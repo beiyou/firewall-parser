@@ -27,10 +27,9 @@ Firewall::VENS::Filter - Filter of Venus Firewall Configuration
 
 =head1 DESCRIPTION
 
-Firewall::VENS::Filter filters out unneeded configuration and pre-formats 
-the configuration in a manner as needed by the parser. It accepts the 
-configuration file, and store the pre formatted configuration, line by 
-line, into an array.
+Firewall::VENS::Filter filters out unneeded configuration and pre-formats the 
+configuration in a manner as needed by the parser. It accepts the configuration 
+file, and store the pre formatted configuration, line by line, into an array.
 
 =cut
 
@@ -63,13 +62,13 @@ sub filter {
 
     push @self, "\n";
 
-    while ($text =~ /(?<=\n)(address-group .*\n)/g) {
+    while ($text =~ /(?<=\n)(service .*\n)/g) {
         push @self, $1;
     }
 
     push @self, "\n";
 
-    while ($text =~ /(?<=\n)(service .*\n)/g) {
+    while ($text =~ /(?<=\n)(address-group .*\n)/g) {
         push @self, $1;
     }
 

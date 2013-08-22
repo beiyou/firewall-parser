@@ -63,9 +63,9 @@ sub update {
 
 sub save {
     # save a object to database
-    my $tree = shift;
+    my $yield = shift;
 
-    my @object = @$tree;
+    my @object = @$yield;
 
     my $table = shift @object;
     my %data;
