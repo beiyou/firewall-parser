@@ -50,7 +50,7 @@ user administrator test1 portlet TopVirus container vc2 pscreate false psindex 4
 user administrator test1 portlet business container vc2 pscreate false psindex 5
 !
 timezone 57
-!
+!
 ips dfi on
 !
 guish timeout 120 
@@ -92,6 +92,11 @@ interface ge9
 interface ge10
 !
 interface ge11
+!
+interface ge7.87
+ aliasname HELo
+ description jljlk
+ ip address dhcp metric 255 gw default dns default
 !
 address venus
  range-address 10.109.32.1 10.109.35.255
@@ -136,6 +141,8 @@ address net6
 address カカシ
  description shi
  host-address 10.109.32.151
+address 灾备实验室
+ host-address 10.109.33.177
 !
 address-group gnet1
    address-object any
@@ -150,7 +157,7 @@ address-group gnet3
 address-group gnet4
    address-object mars
    address-object gnet2
-address-group 新华社香港分社
+address-group kk
    address-object .g
    address-object %net
    address-object net5
@@ -162,6 +169,7 @@ address-group 新华社香港分社
    address-object venus
    address-object 2net
    address-object #net
+   address-object !@#$%^&*())))_`
    address-object any
    address-object net6
    address-object gnet2
@@ -188,6 +196,13 @@ service atom
  tcp dest 1024 2048 source 1024 2048
  udp dest 1024 2048 source 1024 2048
  ip 23
+service 789
+ tcp dest 1000 1100 source 1 65535
+ udp dest 1000 1100 source 1 65535
+ icmp 23 2
+ ip 23
+service liwei111
+ ip 6
 !
 service-group gser1
  service-object http
@@ -204,6 +219,9 @@ service-group universes
 !
 schedule recurring day
  periodic 09:00:00 18:00:00 monday tuesday wednesday thursday friday null null
+schedule recurring gdf
+ absolute 00-08-21 20:08:00 28-08-21 20:08:00
+ periodic 00:00:00 02:00:00 monday null null null friday null null
 !
 schedule onetime summer
  absolute 13-06-11 16:11:00 13-09-11 16:11:00
@@ -219,7 +237,7 @@ policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
 policy 3 any any net1 mars any always permit
-policy 8 any any any カカシ universes summer deny
+policy 8 any any any 1219191416_1918171012191012 universes summer deny
  description shit!!1
 policy 4 ge1 ge2 venus gnet1 tcp always permit
  enable
