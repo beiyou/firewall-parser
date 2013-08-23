@@ -11,7 +11,7 @@ BEGIN {
     @ISA       = qw (Exporter);
     @EXPORT    = qw (generator);
     @EXPORT_OK = qw ();
-    $VERSION   = '3.0000';
+    $VERSION   = '2.0000';
 }
 
 use Smart::Comments;

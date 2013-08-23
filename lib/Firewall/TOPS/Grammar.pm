@@ -101,6 +101,9 @@ po_action :
 id :
             "ID" DIGIT
 
+#
+# token definitions
+#
 
 STRING  :   /\S+/
 DIGIT   :   /\d+/
