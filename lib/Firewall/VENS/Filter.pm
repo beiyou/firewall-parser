@@ -80,6 +80,12 @@ sub filter {
 
     push @self, "\n";
 
+    while ($text =~ /(?<=\n)(schedule .*\n)/g) {
+        push @self, $1;
+    }
+
+    push @self, "\n";
+
     while ($text =~ /(?<=\n)(policy .*\n)/g) {
         push @self, $1;
     }

@@ -44,13 +44,7 @@ sub filter {
 
     my @self = "\n";
 
-    while ($text =~ /(?<=\n)(ID \d+ define .*\n)/g) {
-        push @self, $1;
-    }
-
-    push @self, "\n";
-
-    while ($text =~ /(?<=\n)(ID \d+ firewall .*\n)/g) {
+    while ($text =~ /(?<=\n)(ID \d+ define schedule .*\n)/g) {
         push @self, $1;
     }
 

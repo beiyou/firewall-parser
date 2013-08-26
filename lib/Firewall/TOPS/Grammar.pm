@@ -77,6 +77,16 @@ service_object :
 so_port :
             /port|port2/ DIGIT
 
+schedule :
+            id "define schedule add name" STRING schedule_object
+            { $return = [$item[0], $item[3], $item[4]] }
+
+schedule_object :
+            "cyctype yearcyc sdate" DATE "stime" TIME "edate" DATE "etime" TIME
+            { $return = $item[2]."T".$item[4]."~".$item[6]."T".$item[8] }
+        |   "cyctype weekcyc week" WEEK "start" TIME "end" TIME
+            { $return = $item[4]."~".$item[6]."@".$item[2] }
+
 address_group :
             id "define group_address add name" STRING ("member" STRINGS)(?)
             { $return = [$item[0], $item[3], "@{$item[4]}"] }
@@ -108,9 +118,11 @@ id :
 STRING  :   /\S+/
 DIGIT   :   /\d+/
 IPADDR  :   /(\d{1,3})((\.)(\d{1,3})){3}/
-
 STRINGS :   /'/ /(\S+ )+/ /'/ { $return = $item[2] }
 IPADDRS :   /'/ /((\d{1,3})((\.)(\d{1,3})){3} )+/ /'/ { $return = $item[2] }
+DATE    :   /\d{4}-\d{2}-\d{2}/
+TIME    :   /\d{2}:\d{2}(:\d{2})?/
+WEEK    :   /[1234567]+/
 
 };
 

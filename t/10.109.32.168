@@ -166,14 +166,9 @@ address-group kk
    address-object net2
    address-object net1
    address-object mars
-   address-object venus
-   address-object 2net
-   address-object #net
-   address-object !@#$%^&*())))_`
    address-object any
    address-object net6
    address-object gnet2
-   address-object gnet3
    address-object gnet1
 !
 service sunday
@@ -237,7 +232,7 @@ policy 1 any any any any any always permit
 policy 2 any any venus mars ssh always deny
  log policy
 policy 3 any any net1 mars any always permit
-policy 8 any any any 1219191416_1918171012191012 universes summer deny
+policy 8 any any any 灾备实验室 universes summer deny
  description shit!!1
 policy 4 ge1 ge2 venus gnet1 tcp always permit
  enable

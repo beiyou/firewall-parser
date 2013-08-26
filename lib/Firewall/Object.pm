@@ -72,6 +72,7 @@ sub save {
 
     if ($table ~~ /policy/) {
         %data = (
+                tid    => $main::tid,
                 SRC_IF   => shift @object,
                 DST_IF   => shift @object,
                 SRC_IP   => shift @object,
@@ -83,6 +84,7 @@ sub save {
     }
     else {
         %data = (
+                tid    => $main::tid,
                 STRING => shift @object,
                 VALUE  => shift @object,
         );

@@ -81,6 +81,16 @@ so_src_port :
             "source" DIGIT DIGIT
             { $return = $item[2]."-".$item[3] }
 
+schedule :
+            /schedule (onetime|recurring)/ STRING schedule_object(s)
+            { $return = [$item[0], $item[2], "@{$item[3]}"] }
+
+schedule_object :
+            "absolute" DATE TIME DATE TIME
+            { $return = $item[2]."T".$item[3]."~".$item[4]."T".$item[5] }
+        |   "periodic" TIME TIME
+            { $return = $item[2]."~".$item[3]."@"."12345" }
+
 address_group :
             "address-group" STRING groups_object(s)
             { $return = [$item[0], $item[2], "@{$item[3]}"] }
@@ -111,6 +121,8 @@ po_action :
 STRING  :   /\S+/
 DIGIT   :   /\d+/
 IPADDR  :   /(\d{1,3})((\.)(\d{1,3})){3}/
+DATE    :   /\d{2}-\d{2}-\d{2}/
+TIME    :   /\d{2}:\d{2}:\d{2}/
 
 };
 

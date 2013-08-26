@@ -44,9 +44,8 @@ sub parser {
 ### $type
 ### $file
 
-    my $class = "Firewall::".$type."::Filter";
-    eval "require $class";
-    use Firewall::TOPS::Grammar;
+    use Firewall::VENS::Filter;
+    use Firewall::VENS::Grammar;
 
     use Firewall::Object;
 
@@ -69,6 +68,7 @@ sub parser {
 
     foreach my $line (@preprocessed_lines) {
 
+### $line
         # get the parse tree for current line
         $yield = $parser->startrule($line);
 
