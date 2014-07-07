@@ -3,9 +3,9 @@
 ### TODO
 
 1. **finished** write a filter of vens
-2. write a grammar of vens
-3. desgin the object format
-4. write a simple parser that can use grammar to parse out result
+2. **finished** write a grammar of vens
+3. **finished** desgin the object format
+4. **finished** write a simple parser that can use grammar to parse out result
 5. store parse info to database
 
 ### FURTURE
